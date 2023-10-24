@@ -27,36 +27,54 @@
       </div>
       <div class="summary">
         <h3>Summary</h3>
+        <div id="data"></div>
+        <!--
         <table>
           <tr>
             <td><i style="background: url('./assets/images/icon-reaction.svg')"></i></td>
-            <td>test</td>
-            <td>test</td>
+            <td>Reaction</td>
+            <td></td>
             <td>/100</td>
           </tr>
           <tr>
             <td><i style="background: url('./assets/images/icon-memory.svg')"></i></td>
-            <td></td>
+            <td>Memory</td>
             <td></td>
             <td>/100</td>
           </tr>
           <tr>
             <td><i style="background: url('./assets/images/icon-verbal.svg')"></i></td>
-            <td></td>
+            <td>Verbal</td>
             <td></td>
             <td>/100</td>
           </tr>
           <tr>
             <td><i style="background: url('./assets/images/icon-visual.svg')"></i></td>
-            <td></td>
+            <td>Visual</td>
             <td></td>
             <td>/100</td>
           </tr>
         </table>
+        -->
         <button>Continue</button>
       </div>
     </div>
 
     <div class="attribution">Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. Coded by <a href="https://github.com/k1tesurfen/">Kaith Menken</a>.</div>
+    <script>
+      fetch('./data.json')
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          let dataObj = data;
+          let text = '<table>';
+          for (let x in dataObj) {
+            text += "<tr><td><i style='background: url(&quot;" + dataObj[x].icon + "&quot;)'></i></td><td>" + dataObj[x].category + '</td><td>' + dataObj[x].score + '</td><td>/100</td></tr>';
+          }
+          text += '</table>';
+          document.getElementById('data').innerHTML = text;
+        });
+    </script>
   </body>
 </html>
